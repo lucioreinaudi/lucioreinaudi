@@ -8,7 +8,7 @@ DB_CONFIG = {
     'user': 'root', 
     'password': '',  
     'host': '127.0.0.1', 
-    'database': 'intertribu1',
+    'database': 'intertribus',
     'port': 3307  
 }
 
@@ -22,3 +22,4 @@ def conectar_bd():
     except mysql.connector.Error as err:
         print(f"Error al conectar a la BD: {err}")
         return None
+
