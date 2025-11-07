@@ -1,25 +1,22 @@
-import mysql.connector
-import pandas as pd
-import random
-
-# --- CONFIGURACIÓN DE LA BASE DE DATOS ---
+import pymysql
 
 DB_CONFIG = {
-    'user': 'root', 
-    'password': '',  
-    'host': '127.0.0.1', 
-    'database': 'intertribus',
-    'port': 3307  
+    'user': 'root',
+    'password': '',
+    'host': '127.0.0.1',
+    'database': 'intertribu',
+    'port': 3307,
+    'charset': 'utf8mb4',
+    'connect_timeout': 5
 }
 
-# --- FUNCIONES DE UTILIDAD PARA LA BD ---
-
 def conectar_bd():
-    """Establece la conexión a la base de datos."""
     try:
-        conn = mysql.connector.connect(**DB_CONFIG)
-        return conn
-    except mysql.connector.Error as err:
-        print(f"Error al conectar a la BD: {err}")
+        conexion = pymysql.connect(**DB_CONFIG)
+        print("Conexión exitosa a la base de datos.")
+        return conexion
+    except Exception as err:
+        print(f"Error al conectar: {err}")
         return None
+
 
