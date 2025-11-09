@@ -77,5 +77,82 @@ def main():
         if ejecutar_opcion(opcion):
             break
 
+def ejecutar_opcion(opcion):
+    """Ejecuta la acción correspondiente a la opción seleccionada."""
+    global ultimo_resultado_sorteo
+    
+    if opcion == '1':
+        conn = conectar_bd()
+        if conn:
+            mostrarInscripciones(conn)
+            conn.close()
+        else:
+            print("No se pudo conectar a la base de datos para mostrar los inscritos.")
+            
+    elif opcion == '2':
+        conn = conectar_bd()
+        if conn:
+            cursor = conn.cursor()
+            try:
+                cursor.execute("SELECT nombreActividad FROM actividad ORDER BY nombreActividad")
+                actividades = [row[0] for row in cursor.fetchall()]
+                print("\n--- LISTA DE ACTIVIDADES ---")
+                for act in actividades:
+                    print(f"- {act}")
+            except Exception as e:
+                print(f"Error al obtener actividades: {e}")
+            finally:
+                cursor.close()
+                conn.close()
+        else:
+            print("No se pudo conectar a la base de datos para mostrar las actividades.")
+            
+    elif opcion == '3':
+        conn = conectar_bd() 
+        if conn is None:
+            return
+
+        df_inscripciones = obtener_datos_inscripciones(conn)
+        conn.close()
+        
+        if df_inscripciones.empty:
+            print("¡ERROR! No se encontraron inscripciones. La tabla está vacía o hay un error de lectura.")
+            return
+
+        actividades_disponibles = df_inscripciones['nombreActividad'].unique().tolist()
+        print(f"Actividades a sortear: {actividades_disponibles}")
+
+        cupos = obtenerCupos(actividades_disponibles)
+        
+        resultados = realizarSorteos(df_inscripciones, cupos)
+        
+        actividades_ordenadas_reporte = actividades_disponibles
+        
+        mostrarResultados(resultados, actividades_ordenadas_reporte, cupos)
+        
+        ultimo_resultado_sorteo = resultados
+        
+        while True:
+            mostrar_mini_menu_guardar()
+            opcion_guardar = input("Seleccione una opción: ").strip()
+            
+            if opcion_guardar == '1':
+                guardarResultadosSQL(ultimo_resultado_sorteo)
+                break 
+            elif opcion_guardar == '0':
+                print("Volviendo al menú principal...")
+                break
+            else:
+                print("Opción no válida. Por favor, ingrese '1' o '0'.")
+        
+    elif opcion == '0':
+        print("Saliendo del programa. ¡Hasta pronto!")
+        return True 
+        
+    else:
+        print("Opción no válida. Por favor, ingrese un número del 0 al 3.")
+        
+    return False
+
 if __name__ == "__main__":
     main()
