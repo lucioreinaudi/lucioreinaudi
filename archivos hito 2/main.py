@@ -42,6 +42,15 @@ def mostrar_menu():
     print("0 - Salir")
     print("-" * 40)
 
+def mostrar_mini_menu_guardar():
+    """Muestra el mini-menú después del sorteo."""
+    print("\n" + "-" * 40)
+    print("  OPCIONES POST-SORTEO")
+    print("-" * 40)
+    print("1 - Guardar equipos en la base de datos")
+    print("0 - Volver al menú principal")
+    print("-" * 40)
+    
 def main():
     """Función principal del programa que ejecuta el menú."""
     
