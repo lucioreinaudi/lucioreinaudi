@@ -14,7 +14,6 @@ DB_CONFIG = {
     'charset': 'utf8mb4' 
 }
 
-
 def conectar_bd():
     """Establece la conexión a la base de datos usando pymysql."""
     try:
