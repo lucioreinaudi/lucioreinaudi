@@ -50,32 +50,6 @@ def mostrar_mini_menu_guardar():
     print("1 - Guardar equipos en la base de datos")
     print("0 - Volver al menú principal")
     print("-" * 40)
-    
-def main():
-    """Función principal del programa que ejecuta el menú."""
-    
-    conn_temp = conectar_bd()
-    if conn_temp:
-        cursor = conn_temp.cursor()
-        try:
-            cursor.execute("SELECT COUNT(*) FROM inscripciones")
-            cantidad = cursor.fetchone()[0]
-            if cantidad == 0:
-                print("\nLa tabla 'inscripciones' está vacía. Debe agregar datos para sortear (Opción 3).")
-            else:
-                print(f"\nLa tabla 'inscripciones' tiene {cantidad} inscripciones listas para el sorteo.")
-        except Exception:
-            print("\nAdvertencia: No se pudo verificar el número de inscripciones.")
-        finally:
-            cursor.close()
-            conn_temp.close()
-    
-    while True:
-        mostrar_menu()
-        opcion = input("Seleccione una opción: ").strip()
-        
-        if ejecutar_opcion(opcion):
-            break
 
 def ejecutar_opcion(opcion):
     """Ejecuta la acción correspondiente a la opción seleccionada."""
@@ -153,6 +127,32 @@ def ejecutar_opcion(opcion):
         print("Opción no válida. Por favor, ingrese un número del 0 al 3.")
         
     return False
+
+def main():
+    """Función principal del programa que ejecuta el menú."""
+    
+    conn_temp = conectar_bd()
+    if conn_temp:
+        cursor = conn_temp.cursor()
+        try:
+            cursor.execute("SELECT COUNT(*) FROM inscripciones")
+            cantidad = cursor.fetchone()[0]
+            if cantidad == 0:
+                print("\nLa tabla 'inscripciones' está vacía. Debe agregar datos para sortear (Opción 3).")
+            else:
+                print(f"\nLa tabla 'inscripciones' tiene {cantidad} inscripciones listas para el sorteo.")
+        except Exception:
+            print("\nAdvertencia: No se pudo verificar el número de inscripciones.")
+        finally:
+            cursor.close()
+            conn_temp.close()
+    
+    while True:
+        mostrar_menu()
+        opcion = input("Seleccione una opción: ").strip()
+        
+        if ejecutar_opcion(opcion):
+            break
 
 if __name__ == "__main__":
     main()
