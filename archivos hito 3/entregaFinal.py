@@ -14,7 +14,6 @@ DB_CONFIG = {
     'charset': 'utf8mb4' 
 }
 
-
 def conectar_bd():
     """Establece la conexión a la base de datos usando pymysql."""
     try:
@@ -354,9 +353,9 @@ def guardarResultadosSQL(resultados):
 def mostrar_menu():
     """Muestra el menú de opciones."""
     print("\n" + "=" * 40)
-    print("      MENÚ SORTEO INTERTRIBU")
+    print("      MENÚ SORTEO INTERTRIBUS")
     print("=" * 40)
-    print("1 - Mostrar inscritos")
+    print("1 - Mostrar inscriptos")
     print("2 - Mostrar actividades")
     print("3 - Ingresar cupos y realizar sorteo")
     print("0 - Salir")
@@ -448,7 +447,6 @@ def ejecutar_opcion(opcion):
         
     return False
 
-
 def main():
     """Función principal del programa que ejecuta el menú."""
     
@@ -477,3 +475,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
