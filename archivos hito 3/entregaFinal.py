@@ -2,6 +2,7 @@ import pymysql.cursors
 import pandas as pd
 import random
 import sqlalchemy 
+from reporteDeAgregacion import tablaIinscripcionesVacia
 from datetime import date 
 
 DB_CONFIG = {
@@ -475,4 +476,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
