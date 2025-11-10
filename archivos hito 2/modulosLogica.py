@@ -1,5 +1,5 @@
 def mostrarInscripciones(conexion):
-    """Muestra los inscritos detallados con formato de tabla."""
+    """Muestra los inscriptos detallados con formato de tabla."""
     cursor = conexion.cursor()
     consulta = """
         SELECT e.nombre, e.apellido, e.tribu, e.genero, a.nombreActividad
@@ -167,7 +167,7 @@ def realizarSorteos(inscripciones, cupos):
 def mostrarResultados(resultados, actividades_ordenadas_reporte, cupos_ingresados):
     """Imprime los resultados del sorteo en la terminal, incluyendo mensajes de cupo incompleto con el número faltante."""
     print("\n" + "=" *80)
-    print(" RESULTADOS DEL SORTEO INTERTRIBU")
+    print(" RESULTADOS DEL SORTEO INTERTRIBUS")
     print("=" * 80)
 
     print(" --- EQUIPOS CONFORMADOS (SELECCIONADOS) ---")
