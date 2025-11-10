@@ -2,6 +2,7 @@ import pymysql.cursors
 import pandas as pd
 import random
 import sqlalchemy 
+from modulosLogica import mostrarInscripciones, obtener_datos_inscripciones, obtenerCupos, realizarSorteos, mostrarResultados, guardarResultadosSQL
 from datetime import date 
 
 DB_CONFIG = {
