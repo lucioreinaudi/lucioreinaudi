@@ -36,7 +36,7 @@ def mostrar_menu():
     print("\n" + "=" * 40)
     print("      MENÚ SORTEO INTERTRIBU")
     print("=" * 40)
-    print("1 - Mostrar inscritos")
+    print("1 - Mostrar inscriptos")
     print("2 - Mostrar actividades")
     print("3 - Ingresar cupos y realizar sorteo")
     print("0 - Salir")
