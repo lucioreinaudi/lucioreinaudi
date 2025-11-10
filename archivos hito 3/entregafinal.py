@@ -3,6 +3,7 @@ import pandas as pd
 import random
 import sqlalchemy 
 from datetime import date 
+from reporteDeAgregacion import tablaIinscripcionesVacia
 # Configuración de la conexión a la base de datos
 DB_CONFIG = {
     'user': 'root', 
@@ -59,22 +60,6 @@ def mostrarInscripciones(conexion):
     
     print("=" * 80)
     cursor.close()
-
-def tablaIinscripcionesVacia():
-    """Verifica si la tabla de inscripciones tiene datos."""
-    conexion = conectar_bd()
-    if not conexion:
-        return False
-    cursor = conexion.cursor()
-    try:
-        cursor.execute("SELECT COUNT(*) FROM inscripciones")
-        cantidad = cursor.fetchone()[0]
-        return cantidad == 0
-    except Exception:
-        return False
-    finally:
-        cursor.close()
-        conexion.close()
 
 def obtener_datos_inscripciones(conn):
     """Obtiene y combina los datos de inscripciones, estudiantes y actividades en un DataFrame."""
